@@ -2,135 +2,259 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+/* ---------------------------------------------------------------------------
+   Typefaces. Self-hosted, latin subset only, vendored from the @fontsource
+   packages listed in devDependencies.
 
-@layer base {
-  :root {
-    --background: 220 20% 4%;
-    --foreground: 210 20% 92%;
-
-    --card: 220 18% 7%;
-    --card-foreground: 210 20% 92%;
-
-    --popover: 220 18% 7%;
-    --popover-foreground: 210 20% 92%;
-
-    --primary: 200 80% 55%;
-    --primary-foreground: 220 20% 4%;
-
-    --secondary: 220 15% 12%;
-    --secondary-foreground: 210 20% 85%;
-
-    --muted: 220 15% 14%;
-    --muted-foreground: 215 12% 50%;
-
-    --accent: 200 80% 55%;
-    --accent-foreground: 220 20% 4%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 220 15% 15%;
-    --input: 220 15% 15%;
-    --ring: 200 80% 55%;
-
-    --radius: 0.75rem;
-
-    --gradient-primary: linear-gradient(135deg, hsl(200 80% 55%), hsl(220 80% 60%));
-    --gradient-card: linear-gradient(145deg, hsl(220 18% 8%), hsl(220 18% 6%));
-    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(200 80% 55% / 0.08) 0%, transparent 60%);
-    --gradient-section: linear-gradient(180deg, hsl(220 20% 4%) 0%, hsl(220 18% 5.5%) 50%, hsl(220 20% 4%) 100%);
-
-    --shadow-glow: 0 0 40px -10px hsl(200 80% 55% / 0.2);
-    --shadow-card: 0 4px 24px -4px hsl(0 0% 0% / 0.3);
-    --shadow-card-hover: 0 8px 40px -8px hsl(200 80% 55% / 0.15);
-
-    --font-heading: 'Inter', system-ui, sans-serif;
-    --font-body: 'Inter', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-  }
+   One sans carries the whole page. Hierarchy comes from size and weight
+   rather than from a second family, which is why the display and the body
+   are the same face. IBM Plex Mono is the only other voice, and it is
+   restricted to metadata: rail labels, section labels and stack lists.
+--------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url("/fonts/instrument-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("/fonts/plex-mono-latin-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ---------------------------------------------------------------------------
+   Tokens. One palette, two modes. Light is the default; dark is a full
+   translation of the same roles, never a separate design.
+--------------------------------------------------------------------------- */
 @layer base {
+  :root {
+    --paper: 40 20% 98%;
+    --surface: 40 14% 95%;
+    --surface-strong: 40 12% 92%;
+
+    --ink: 30 9% 9%;
+    --ink-secondary: 30 5% 34%;
+    --ink-muted: 30 5% 41%;
+
+    --rule: 34 10% 87%;
+    --rule-strong: 34 8% 78%;
+
+    --accent: 222 68% 42%;
+    --accent-ink: 0 0% 100%;
+
+    --live: 152 55% 32%;
+
+    --radius: 4px;
+
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  .dark {
+    --paper: 30 8% 7%;
+    --surface: 30 7% 10%;
+    --surface-strong: 30 6% 14%;
+
+    --ink: 40 14% 93%;
+    --ink-secondary: 36 7% 68%;
+    --ink-muted: 36 6% 55%;
+
+    --rule: 30 6% 19%;
+    --rule-strong: 30 6% 27%;
+
+    --accent: 218 78% 68%;
+    --accent-ink: 222 60% 10%;
+
+    --live: 152 45% 55%;
+  }
+
   * {
-    @apply border-border;
+    border-color: hsl(var(--rule));
   }
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: var(--font-body);
+    background-color: hsl(var(--paper));
+    color: hsl(var(--ink));
+    font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+  h1, h2, h3, h4 {
+    letter-spacing: -0.022em;
+    text-wrap: balance;
   }
 
-  code, pre {
-    font-family: var(--font-mono);
+  p {
+    text-wrap: pretty;
+  }
+
+  /* One focus treatment, everywhere, visible in both modes. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: hsl(var(--accent) / 0.18);
   }
 }
 
 @layer components {
-  .section-padding {
-    @apply px-4 sm:px-6 lg:px-8 py-20 md:py-28;
+  /* Horizontal frame. Every section shares it so the left edge never moves. */
+  .frame {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
   }
 
-  .section-container {
-    @apply max-w-6xl mx-auto;
+  @media (min-width: 768px) {
+    .frame { padding-inline: 2.5rem; }
   }
 
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-primary);
+  @media (min-width: 1280px) {
+    .frame { padding-inline: 4rem; }
   }
 
-  .card-premium {
-    @apply rounded-xl border border-border/50 transition-all duration-300;
-    background: var(--gradient-card);
-    box-shadow: var(--shadow-card);
+  /* Metadata voice: small, monospaced, wide. Used for rail labels and
+     stack lists only, never for reading copy. */
+  .meta {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.6875rem;
+    line-height: 1.45;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: hsl(var(--ink-muted));
   }
 
-  .card-premium:hover {
-    @apply border-primary/30;
-    box-shadow: var(--shadow-card-hover);
+  .measure { max-width: 34rem; }
+  .measure-wide { max-width: 42rem; }
+
+  /* Text link. Underline sits low and thin, then thickens and closes in on
+     hover. Colour never changes, so the page stays achromatic. */
+  .link {
+    color: hsl(var(--ink));
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--rule-strong));
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.28em;
+    transition: text-decoration-color 160ms var(--ease-out),
+      text-underline-offset 160ms var(--ease-out);
   }
 
-  .badge-tech {
-    @apply inline-flex items-center px-3 py-1 rounded-md text-xs font-medium border border-border/50 bg-secondary text-muted-foreground transition-colors duration-200;
+  @media (hover: hover) and (pointer: fine) {
+    .link:hover {
+      text-decoration-color: hsl(var(--ink));
+      text-underline-offset: 0.2em;
+    }
   }
 
-  .badge-tech:hover {
-    @apply border-primary/40 text-foreground;
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 1.125rem;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out),
+      border-color 160ms var(--ease-out), color 160ms var(--ease-out);
   }
+
+  .btn:active { transform: scale(0.975); }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300;
-    background-image: var(--gradient-primary);
-    color: hsl(var(--primary-foreground));
+    background-color: hsl(var(--ink));
+    color: hsl(var(--paper));
   }
 
-  .btn-primary:hover {
-    @apply opacity-90 scale-[1.02];
-    box-shadow: var(--shadow-glow);
+  .btn-secondary {
+    border-color: hsl(var(--rule-strong));
+    color: hsl(var(--ink));
   }
 
-  .btn-outline {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm border border-border/60 text-foreground transition-all duration-300 bg-transparent;
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover { background-color: hsl(var(--ink-secondary)); }
+    .btn-secondary:hover { border-color: hsl(var(--ink)); background-color: hsl(var(--surface)); }
   }
 
-  .btn-outline:hover {
-    @apply border-primary/50 bg-primary/5;
+  @media (prefers-reduced-motion: reduce) {
+    .btn:active { transform: none; }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Motion.
+
+   There is exactly one keyframe animation on this page: the hero load-in.
+   Everything else that moves is an interaction state defined above, where the
+   movement is feedback rather than decoration.
+
+   Content deliberately does not animate on scroll. A reader arriving at a
+   section should already be able to read it, and a reveal that depends on
+   scroll position fails the moment the page is captured, printed, or read
+   without scrolling.
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
   }
 
-  .section-title {
-    @apply text-3xl md:text-4xl font-bold tracking-tight text-foreground;
+  .animate-rise {
+    animation: rise 520ms var(--ease-out) both;
   }
 
-  .section-subtitle {
-    @apply text-muted-foreground text-lg max-w-2xl;
+  /* The mobile menu.
+     
+     140ms is deliberately at the fast end. This is a navigation surface
+     somebody opens in order to get somewhere else, so any gap between the tap
+     and a readable list is felt as lag rather than as polish. It enters, so it
+     eases out; it starts 6px high rather than from nothing, because nothing in
+     the world appears from zero. */
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .animate-menu {
+    animation: menu-in 140ms var(--ease-out) both;
   }
 }

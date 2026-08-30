@@ -1,14 +1,8 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
 Allow: /
+
+# The resume carries a phone number. It stays reachable from the site but is
+# kept out of search indexes. Delete this rule to have it indexed.
+Disallow: /edmart-abon-resume.pdf
+
+Sitemap: https://edmartabon.github.io/sitemap.xml

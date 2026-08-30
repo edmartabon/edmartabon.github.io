@@ -1,58 +1,46 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Mail, Copy, Check } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import ResumeLink from "@/components/ResumeLink";
+import { CopyEmail } from "@/components/SiteHeader";
+import { availability, site } from "@/content/site";
 
-const EMAIL = "edmartabon@gmail.com";
-
-const ContactSection = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(EMAIL);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
+export default function ContactSection() {
   return (
-    <section id="contact" className="section-padding">
-      <div className="section-container">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto"
-        >
-          <p className="text-primary font-mono text-sm tracking-widest uppercase mb-3">Contact</p>
-          <h2 className="section-title mb-4">Let's build something.</h2>
-          <p className="section-subtitle mx-auto mb-10">
-            Whether you're a recruiter, founder, or client — I'm open to discussing new opportunities, projects, and collaborations.
+    <section id="contact" className="border-t border-rule py-16 md:py-24">
+      <div className="frame">
+        <div className="measure-wide">
+          <h2 className="font-display text-display-sm font-semibold text-ink">
+            Let’s talk about what you’re building.
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-ink-secondary md:text-lg">
+            {availability}
           </p>
+        </div>
 
-          <div className="card-premium p-6 inline-flex flex-col sm:flex-row items-center gap-4">
-            <div className="flex items-center gap-3">
-              <Mail size={18} className="text-primary" />
-              <a
-                href={`mailto:${EMAIL}`}
-                className="text-foreground font-mono text-sm hover:text-primary transition-colors"
-              >
-                {EMAIL}
-              </a>
-            </div>
-            <button
-              onClick={handleCopy}
-              className="btn-outline text-xs px-4 py-2"
-            >
-              {copied ? <Check size={14} /> : <Copy size={14} />}
-              {copied ? "Copied" : "Copy"}
-            </button>
-          </div>
-        </motion.div>
+        <div className="mt-9 flex flex-wrap items-center gap-3">
+          <a href={`mailto:${site.email}`} className="btn btn-primary">
+            {site.email}
+          </a>
+          <CopyEmail />
+          {/* Sits with the buttons rather than trailing the row as a text
+              link. Someone reading a hiring page wants the file, and the
+              weight of the control should match how often it is the reason
+              they scrolled this far. */}
+          <ResumeLink label="Download résumé" className="btn btn-secondary" />
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link group inline-flex min-h-[2.75rem] items-center gap-1.5 px-1 text-sm"
+          >
+            GitHub
+            <ArrowUpRight
+              size={14}
+              aria-hidden
+              className="transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
+          </a>
+        </div>
       </div>
     </section>
   );
-};
-
-export default ContactSection;
+}

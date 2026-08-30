@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page not found · Edmart Abon</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#131211" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!--
+      Standalone on purpose. Pulling the app bundle in to render four lines of
+      text would make the error page heavier than most of the real ones, and it
+      would fail in exactly the situations where a 404 is most likely.
+
+      The tokens are the same values as src/index.css. They are duplicated here
+      rather than imported because this file must work with no build step and
+      no JavaScript at all.
+    -->
+    <style>
+      @font-face {
+        font-family: "Instrument Sans";
+        font-style: normal;
+        font-weight: 400 700;
+        font-display: swap;
+        src: url("/fonts/instrument-sans-latin.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "IBM Plex Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/fonts/plex-mono-latin-400.woff2") format("woff2");
+      }
+      :root {
+        --paper: 40 20% 98%;
+        --ink: 30 9% 9%;
+        --ink-secondary: 30 5% 34%;
+        --ink-muted: 30 5% 41%;
+        --rule-strong: 34 8% 78%;
+        --accent: 222 68% 42%;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: 30 8% 7%;
+          --ink: 40 14% 93%;
+          --ink-secondary: 36 7% 68%;
+          --ink-muted: 36 6% 55%;
+          --rule-strong: 30 6% 27%;
+          --accent: 218 78% 68%;
+        }
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        min-height: 100dvh;
+        display: grid;
+        align-content: center;
+        padding: 1.25rem;
+        background-color: hsl(var(--paper));
+        color: hsl(var(--ink));
+        font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      main { width: 100%; max-width: 78rem; margin-inline: auto; }
+      @media (min-width: 768px) { body { padding: 2.5rem; } }
+      @media (min-width: 1280px) { body { padding: 4rem; } }
+      .meta {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+        font-size: 0.6875rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: hsl(var(--ink-muted));
+      }
+      h1 {
+        margin-top: 0.75rem;
+        font-size: clamp(2.25rem, 1.6rem + 2.9vw, 3.75rem);
+        font-weight: 600;
+        line-height: 1.05;
+        letter-spacing: -0.028em;
+      }
+      p {
+        margin-top: 1.25rem;
+        max-width: 42rem;
+        font-size: 1.0625rem;
+        line-height: 1.65;
+        color: hsl(var(--ink-secondary));
+      }
+      a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2.75rem;
+        margin-top: 1.75rem;
+        color: hsl(var(--ink));
+        text-decoration: underline;
+        text-decoration-color: hsl(var(--rule-strong));
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.28em;
+      }
+      a:hover { text-decoration-color: hsl(var(--ink)); }
+      a:focus-visible {
+        outline: 2px solid hsl(var(--accent));
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="meta">Error 404</p>
+      <h1>This page does not exist.</h1>
+      <p>The address may be mistyped, or the page may have been removed.</p>
+      <a href="/">Back to the start</a>
+    </main>
+  </body>
+</html>

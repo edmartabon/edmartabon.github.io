@@ -1,27 +1,39 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import SiteHeader from "@/components/SiteHeader";
+import Hero from "@/components/Hero";
+import WorkSection from "@/components/WorkSection";
+import SystemsSection from "@/components/SystemsSection";
+import AutomationSection from "@/components/AutomationSection";
+import ExpertiseSection from "@/components/ExpertiseSection";
+import AboutSection from "@/components/AboutSection";
+import ContactSection from "@/components/ContactSection";
+import SiteFooter from "@/components/SiteFooter";
 
-const queryClient = new QueryClient();
+export default function App() {
+  return (
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-ink focus:px-4 focus:py-2.5 focus:text-sm focus:text-paper"
+      >
+        Skip to content
+      </a>
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+      {/* Watched by the header to know when it has left the top of the page. */}
+      <div id="top-sentinel" aria-hidden className="absolute top-0 h-px w-px" />
 
-export default App;
+      <SiteHeader />
+
+      <main id="main">
+        <Hero />
+        <WorkSection />
+        <SystemsSection />
+        <AutomationSection />
+        <ExpertiseSection />
+        <AboutSection />
+        <ContactSection />
+      </main>
+
+      <SiteFooter />
+    </>
+  );
+}

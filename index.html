@@ -2,18 +2,111 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ed Martabon — Full Stack & DevOps Developer</title>
-    <meta name="description" content="Full Stack & DevOps Developer building scalable SaaS platforms from database to deployment. Featured work: Dentify and VetCliq." />
-    <meta name="author" content="Ed Martabon" />
-    <link rel="canonical" href="https://edmartabon.github.io" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="og:title" content="Ed Martabon — Full Stack & DevOps Developer" />
-    <meta property="og:description" content="Building scalable SaaS platforms from database to deployment." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://edmartabon.github.io" />
+    <title>Edmart Abon · Full Stack &amp; Backend Engineer, Co-founder of Harky.ai</title>
+    <meta
+      name="description"
+      content="Full stack and backend engineer building SaaS products from backend architecture to production. APIs, business logic, background processing, integrations and the infrastructure they run on. Co-founder at Harky.ai."
+    />
+    <meta name="author" content="Edmart Abon" />
+    <link rel="canonical" href="https://edmartabon.github.io/" />
+
+    <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#131211" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Edmart Abon" />
+    <meta property="og:title" content="Edmart Abon · Full Stack & Backend Engineer" />
+    <meta
+      property="og:description"
+      content="I build SaaS products from backend architecture to production. Co-founder at Harky.ai."
+    />
+    <meta property="og:url" content="https://edmartabon.github.io/" />
+    <meta property="og:image" content="https://edmartabon.github.io/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Edmart Abon, Co-founder at Harky.ai. I build SaaS products from backend architecture to production."
+    />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Edmart Abon · Full Stack & Backend Engineer" />
+    <meta
+      name="twitter:description"
+      content="I build SaaS products from backend architecture to production. Co-founder at Harky.ai."
+    />
+    <meta name="twitter:image" content="https://edmartabon.github.io/og.png" />
+
+    <!-- Typefaces are self-hosted and same-origin, so preloading them costs one
+         hop and removes the swap on first paint. -->
+    <link rel="preload" href="/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script>
+      // Applied before first paint so the correct palette is never repainted.
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var dark = stored ? stored === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+          if (dark) document.documentElement.classList.add("dark");
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        } catch (e) {
+          /* No storage available. The light default stands. */
+        }
+      })();
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Edmart Abon",
+        "url": "https://edmartabon.github.io/",
+        "image": "https://edmartabon.github.io/og.png",
+        "jobTitle": "Full Stack & Backend Engineer",
+        "description": "Full stack and backend engineer building SaaS products from backend architecture to production. Co-founder at Harky.ai.",
+        "email": "mailto:edmartabon@gmail.com",
+        "sameAs": ["https://github.com/edmartabon"],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Harky.ai",
+          "url": "https://harky.ai/"
+        },
+        "knowsAbout": [
+          "Backend engineering",
+          "SaaS architecture",
+          "REST API architecture",
+          "Multi-tenant SaaS",
+          "Database design",
+          "Background processing",
+          "Jobs and queues",
+          "Scheduled automation",
+          "Third-party integrations",
+          "Webhooks",
+          "DevOps",
+          "Cloud deployment",
+          "Production operations",
+          "AI automation",
+          "AI agents",
+          "OpenClaw",
+          "Product engineering",
+          "Laravel",
+          "PHP",
+          "PostgreSQL",
+          "MySQL",
+          "Docker",
+          "Linux",
+          "Nginx",
+          "React",
+          "TypeScript"
+        ]
+      }
+    </script>
   </head>
 
   <body>
